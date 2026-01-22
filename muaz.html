@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tasneem Beauty Box & Amio Uddokta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF6B8B;
+      --secondary: #6C63FF;
+      --accent: #4ECDC4;
+      --light: #F8F9FA;
+      --dark: #2D3436;
+      --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      color: var(--dark);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    /* Header Styles */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 600;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: #666;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      min-width: 150px;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* Main Card */
+    .main-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient);
+    }
+
+    /* Category Headers */
+    .category-headers {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .category-title {
+      font-size: 22px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category-title.devices {
+      color: var(--primary);
+    }
+
+    .category-title.experts {
+      color: var(--secondary);
+    }
+
+    .category-title i {
+      font-size: 24px;
+    }
+
+    .vertical-divider {
+      width: 2px;
+      height: 40px;
+      background: var(--gradient);
+      margin: 0 30px;
+      border-radius: 1px;
+    }
+
+    /* Items Grid */
+    .items-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 20px;
+      border-radius: 12px;
+      background: #f9f9f9;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .item-row:hover {
+      background: white;
+      border-color: rgba(108, 99, 255, 0.2);
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .item-row.checked {
+      background: linear-gradient(135deg, rgba(255, 107, 139, 0.05), rgba(108, 99, 255, 0.05));
+      border-color: rgba(108, 99, 255, 0.3);
+    }
+
+    .item-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+    }
+
+    /* Custom Checkbox */
+    .checkbox-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .custom-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .checkbox-container input {
+      display: none;
+    }
+
+    .checkbox-container input:checked + .custom-checkbox {
+      background: var(--gradient);
+      border-color: transparent;
+    }
+
+    .checkbox-container input:checked + .custom-checkbox::after {
+      content: '✓';
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .item-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--dark);
+      flex: 1;
+    }
+
+    .item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .devices .item-icon {
+      background: var(--primary);
+    }
+
+    .experts .item-icon {
+      background: var(--secondary);
+    }
+
+    /* Progress Section */
+    .progress-section {
+      margin-top: 50px;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .progress-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 20px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1s ease;
+    }
+
+    .progress-text {
+      font-size: 16px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 5px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      .header h1 {
+        font-size: 32px;
+      }
+      
+      .category-headers {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .vertical-divider {
+        display: none;
+      }
+      
+      .item-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+      }
+      
+      .item-content {
+        padding: 8px;
+      }
+      
+      .stats-container {
+        gap: 15px;
+      }
+      
+      .stat-box {
+        min-width: 120px;
+        padding: 15px 20px;
+      }
+      
+      .stat-number {
+        font-size: 28px;
+      }
+      
+      .btn {
+        padding: 12px 30px;
+        font-size: 14px;
+      }
+      
+      .progress-section {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 28px;
+      }
+      
+      .tagline {
+        font-size: 16px;
+      }
+      
+      .category-title {
+        font-size: 18px;
+      }
+      
+      .item-label {
+        font-size: 14px;
+      }
+      
+      .item-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+      
+      .stats-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .stat-box {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    .delay-5 { animation-delay: 0.5s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header animate">
+      <h1>Tasneem Beauty Box & Amio Uddokta</h1>
+    </div>
+
+    <!-- Stats -->
+    <!-- <div class="stats-container">
+      <div class="stat-box animate delay-1">
+        <div class="stat-number" id="totalItems">0</div>
+        <div class="stat-label">Total Items</div>
+      </div>
+      <div class="stat-box animate delay-2">
+        <div class="stat-number" id="checkedItems">0</div>
+        <div class="stat-label">Selected Items</div>
+      </div>
+      <div class="stat-box animate delay-3">
+        <div class="stat-number" id="progressPercent">0%</div>
+        <div class="stat-label">Completion</div>
+      </div>
+    </div> -->
+
+    <!-- Main Card -->
+    <div class="main-card animate delay-4">
+      <!-- Category Headers -->
+      <div class="category-headers">
+        <div class="category-title devices">
+          <i class="fas fa-camera"></i>
+          <span>Devices & Equipment</span>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="category-title experts">
+          <i class="fas fa-users"></i>
+          <span>Experts & Professionals</span>
+        </div>
+      </div>
+
+      <!-- Items Grid -->
+      <div class="items-grid">
+        <!-- Row 1 -->
+        <div class="item-row animate delay-1">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-camera"></i>
+            </div>
+            <span class="item-label">High-Quality Camera</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <span class="item-label">Graphic Designer</span>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="item-row animate delay-2">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-microphone"></i>
+            </div>
+            <span class="item-label">Studio Microphone</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <span class="item-label">Video Editor</span>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="item-row animate delay-3">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <span class="item-label">Professional Lights</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <span class="item-label">Digital Marketer</span>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-camera-retro"></i>
+            </div>
+            <span class="item-label">Tripod Stand</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <span class="item-label">Website Developer</span>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-camera-rotate"></i>
+            </div>
+            <span class="item-label">Stabilizer Gimbal</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <span class="item-label">App Developer</span>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-image"></i>
+            </div>
+            <span class="item-label">Professional Backdrop</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <span class="item-label">UI/UX Designer</span>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-scroll"></i>
+            </div>
+            <span class="item-label">Teleprompter</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <span class="item-label">DevOps Engineer</span>
+          </div>
+        </div>
+
+        <!-- Row 8 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <span class="item-label">Interactive Flat Panel</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-photo-video"></i>
+            </div>
+            <span class="item-label">Photo & Videographer</span>
+          </div>
+        </div>
+
+        <!-- Row 9 -->
+        <div class="item-row">
+          <div class="item-content devices">
+            <label class="checkbox-container">
+              <input type="checkbox" class="device-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <span class="item-label">Laptop / Desktop</span>
+          </div>
+          <div class="vertical-divider"></div>
+          <div class="item-content experts">
+            <label class="checkbox-container">
+              <input type="checkbox" class="expert-checkbox">
+              <span class="custom-checkbox"></span>
+            </label>
+            <div class="item-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <span class="item-label">Professional Presenter</span>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- Progress Section -->
+      <!-- <div class="progress-section">
+        <div class="progress-title">Project Setup Progress</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Select items to track your progress</div>
+      </div> -->
+
+      <!-- Action Buttons -->
+      <!-- <div class="action-buttons">
+        <button class="btn btn-primary" id="selectAllBtn">
+          <i class="fas fa-check-double"></i>
+          Select All
+        </button>
+        <button class="btn btn-secondary" id="clearAllBtn">
+          <i class="fas fa-trash-alt"></i>
+          Clear All
+        </button>
+        <button class="btn btn-primary" id="generateReportBtn">
+          <i class="fas fa-file-download"></i>
+          Generate Report
+        </button>
+      </div> -->
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-logo">TBB & AU</div>
+      <p>© 2026 Tasneem Beauty Box & Amio Uddokta. All rights reserved.</p>
+      <p>Empowering creativity through technology and expertise</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all checkboxes
+      const deviceCheckboxes = document.querySelectorAll('.device-checkbox');
+      const expertCheckboxes = document.querySelectorAll('.expert-checkbox');
+      const allCheckboxes = [...deviceCheckboxes, ...expertCheckboxes];
+      
+      // Get progress elements
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const totalItemsElement = document.getElementById('totalItems');
+      const checkedItemsElement = document.getElementById('checkedItems');
+      const progressPercentElement = document.getElementById('progressPercent');
+      
+      // Set total items
+      const totalItems = allCheckboxes.length;
+      totalItemsElement.textContent = totalItems;
+      
+      // Function to update progress
+      function updateProgress() {
+        const checkedCount = [...allCheckboxes].filter(cb => cb.checked).length;
+        const progressPercentage = Math.round((checkedCount / totalItems) * 100);
+        
+        // Update UI
+        checkedItemsElement.textContent = checkedCount;
+        progressPercentElement.textContent = `${progressPercentage}%`;
+        progressBar.style.width = `${progressPercentage}%`;
+        progressText.textContent = `${checkedCount} of ${totalItems} items selected (${progressPercentage}%)`;
+        
+        // Update row styles
+        document.querySelectorAll('.item-row').forEach(row => {
+          const rowCheckboxes = row.querySelectorAll('input[type="checkbox"]');
+          const allChecked = [...rowCheckboxes].every(cb => cb.checked);
+          const anyChecked = [...rowCheckboxes].some(cb => cb.checked);
+          
+          if (allChecked) {
+            row.classList.add('checked');
+          } else {
+            row.classList.remove('checked');
+          }
+        });
+      }
+      
+      // Add event listeners to all checkboxes
+      allCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateProgress);
+      });
+      
+      // Select All button
+      document.getElementById('selectAllBtn').addEventListener('click', function() {
+        allCheckboxes.forEach(checkbox => {
+          checkbox.checked = true;
+        });
+        updateProgress();
+        
+        // Add visual feedback
+        this.innerHTML = '<i class="fas fa-check-circle"></i> All Selected!';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fas fa-check-double"></i> Select All';
+        }, 1500);
+      });
+      
+      // Clear All button
+      document.getElementById('clearAllBtn').addEventListener('click', function() {
+        allCheckboxes.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        updateProgress();
+        
+        // Add visual feedback
+        this.innerHTML = '<i class="fas fa-broom"></i> Cleared!';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fas fa-trash-alt"></i> Clear All';
+        }, 1500);
+      });
+      
+      // Generate Report button
+      document.getElementById('generateReportBtn').addEventListener('click', function() {
+        const checkedCount = [...allCheckboxes].filter(cb => cb.checked).length;
+        
+        if (checkedCount === 0) {
+          alert('Please select at least one item to generate a report.');
+          return;
+        }
+        
+        // Show success message
+        const originalHTML = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+        
+        setTimeout(() => {
+          this.innerHTML = '<i class="fas fa-check"></i> Report Generated!';
+          
+          // Create and download report
+          const reportData = {
+            company: 'Tasneem Beauty Box & Amio Uddokta',
+            date: new Date().toLocaleDateString(),
+            totalItems: totalItems,
+            selectedItems: checkedCount,
+            completionPercentage: Math.round((checkedCount / totalItems) * 100),
+            selectedDevices: Array.from(deviceCheckboxes)
+              .filter(cb => cb.checked)
+              .map(cb => cb.closest('.item-content').querySelector('.item-label').textContent),
+            selectedExperts: Array.from(expertCheckboxes)
+              .filter(cb => cb.checked)
+              .map(cb => cb.closest('.item-content').querySelector('.item-label').textContent)
+          };
+          
+          // Create download link
+          const reportText = `
+TASNEEM BEAUTY BOX & AMIO UDDOKTA
+==================================
+Equipment & Expertise Selection Report
+Date: ${reportData.date}
+
+SUMMARY:
+--------
+Total Available Items: ${reportData.totalItems}
+Selected Items: ${reportData.selectedItems}
+Completion: ${reportData.completionPercentage}%
+
+SELECTED DEVICES:
+----------------
+${reportData.selectedDevices.map(item => `✓ ${item}`).join('\n') || 'No devices selected'}
+
+SELECTED EXPERTS:
+----------------
+${reportData.selectedExperts.map(item => `✓ ${item}`).join('\n') || 'No experts selected'}
+
+---
+© 2026 Tasneem Beauty Box & Amio Uddokta
+          `;
+          
+          const blob = new Blob([reportText], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `TBB-AU-Report-${new Date().toISOString().split('T')[0]}.txt`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          
+          setTimeout(() => {
+            this.innerHTML = originalHTML;
+          }, 2000);
+        }, 1500);
+      });
+      
+      // Initialize progress
+      updateProgress();
+      
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all animated elements
+      document.querySelectorAll('.animate').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
